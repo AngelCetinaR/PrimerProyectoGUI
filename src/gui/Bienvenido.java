@@ -5,6 +5,7 @@
  */
 package gui;
 
+import java.text.DecimalFormat;
 import javax.swing.JOptionPane;
 
 /**
@@ -38,6 +39,8 @@ public class Bienvenido extends javax.swing.JFrame {
         etiquetaResultado = new javax.swing.JLabel();
         campoResultado = new javax.swing.JTextField();
         botonRestar = new javax.swing.JButton();
+        botonMultiplicar = new javax.swing.JButton();
+        botonDividir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Bienvenidos");
@@ -65,6 +68,20 @@ public class Bienvenido extends javax.swing.JFrame {
             }
         });
 
+        botonMultiplicar.setText("Multiplicar");
+        botonMultiplicar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonMultiplicarActionPerformed(evt);
+            }
+        });
+
+        botonDividir.setText("Dividir");
+        botonDividir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonDividirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -82,12 +99,17 @@ public class Bienvenido extends javax.swing.JFrame {
                     .addComponent(botonSumar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(botonRestar)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(botonRestar)
+                        .addGap(27, 27, 27)
+                        .addComponent(botonMultiplicar)
+                        .addGap(26, 26, 26)
+                        .addComponent(botonDividir))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(campoNumero2, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
                         .addComponent(campoNumero1)
                         .addComponent(campoResultado)))
-                .addContainerGap(170, Short.MAX_VALUE))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -103,7 +125,9 @@ public class Bienvenido extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botonSumar)
-                    .addComponent(botonRestar))
+                    .addComponent(botonRestar)
+                    .addComponent(botonMultiplicar)
+                    .addComponent(botonDividir))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(etiquetaResultado)
@@ -137,6 +161,31 @@ public class Bienvenido extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Sólo se admiten números");
         }
     }//GEN-LAST:event_botonRestarActionPerformed
+
+    private void botonMultiplicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMultiplicarActionPerformed
+        try {
+            int num1 = Integer.parseInt(campoNumero1.getText());
+            int num2 = Integer.parseInt(campoNumero2.getText());
+            int resultado = num1 * num2;
+            campoResultado.setText(Integer.toString(resultado));
+        } catch(NumberFormatException nfe ) {
+            JOptionPane.showMessageDialog(this, "Sólo se admiten números");
+        }
+    }//GEN-LAST:event_botonMultiplicarActionPerformed
+
+    private void botonDividirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonDividirActionPerformed
+        int num1, num2 = 0;
+        float resultado;
+        try {
+            num1 = Integer.parseInt(campoNumero1.getText());
+            num2 = Integer.parseInt(campoNumero2.getText());
+            DecimalFormat numdec = new DecimalFormat("00.00");
+            resultado = (float) num1 / num2;
+            campoResultado.setText(numdec.format(resultado));
+        } catch(NumberFormatException nfe ) {
+            JOptionPane.showMessageDialog(this, "Sólo se admiten números");
+            } 
+    }//GEN-LAST:event_botonDividirActionPerformed
 
     
     
@@ -176,6 +225,8 @@ public class Bienvenido extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botonDividir;
+    private javax.swing.JButton botonMultiplicar;
     private javax.swing.JButton botonRestar;
     private javax.swing.JButton botonSumar;
     private javax.swing.JTextField campoNumero1;
